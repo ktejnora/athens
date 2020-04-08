@@ -16,7 +16,7 @@ func (l *storageImpl) List(ctx context.Context, module string) ([]string, error)
 	doneCh := make(chan struct{})
 	defer close(doneCh)
 	searchPrefix := module + "/"
-	objectCh, err := l.minioCore.ListObjectsV2(l.bucketName, searchPrefix, "", false, "", 0, "")
+	objectCh, err := l.minioCore.ListObjects(l.bucketName, searchPrefix, "", false, "", 0, "")
 
 	if err != nil {
 		return nil, errors.E(op, err, errors.M(module))
